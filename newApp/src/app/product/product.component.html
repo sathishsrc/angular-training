@@ -1,0 +1,51 @@
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        {{pageName}}
+    </div>
+    <div class='panel-body'>
+        <div class='row'> {{errorMsg}}
+            <div class='col-md-2'>Filter by: <b> {{filterBy}} </b></div>
+            <div class='col-md-4'>
+                <input type='text' [(ngModel)] = 'filterBy'/>
+
+            </div>
+        </div>
+
+        <div class='table-responsive'>
+            <table class='table'
+                    *ngIf='products && products.length'>
+                <thead>
+                    <tr>
+                        <th>
+                            <button class='btn btn-primary' (click) = 'toggleImage()'>
+                               {{ showImage ? 'Hide' : 'Show' }} Image
+                            </button>
+                        </th>
+                        <th>Product</th>
+                        <th>Code</th>
+                        <th>Available</th>
+                        <th>Price</th>
+                        <th>5 Star Rating</th>
+                    </tr>
+                </thead>
+
+                  <tbody>
+                    <tr *ngFor='let product of listFilterProducts'>
+                        <td>
+                          <img
+                            *ngIf = "showImage"
+                           [src] = 'product.imageUrl' [title] = 'product.productName' [style.width.px] = 'imgWidth' [style.margin.px] = 'imgMargin'>
+                        </td>
+                        <td> <a [routerLink] = "['/products', product.productId]">{{ product.productName }}</a></td>
+                        <td>{{ product.productCode | lowercase | convertToSpaces: '-'}}</td>
+                        <td>{{ product.releaseDate }}</td>
+                        <td>{{ product.price | currency:'USD':true:'1.2-2' }}</td>
+                        <td><app-star [starRating] = 'product.starRating' (ratingClicked) = 'onRatingClicked($event)' ></app-star></td>
+                    </tr>
+                </tbody>
+            
+            </table>
+        </div>
+    </div>
+</div>
+

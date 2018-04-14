@@ -1,0 +1,71 @@
+<form class="jumbotron" #frm="ngForm" (ngSubmit)="register(frm)">
+
+<div class="form-group">
+<label for="name"> Name </label>
+<input type="text" 
+ class="form-control"
+ required
+ name="name"
+ ngModel
+ pattern="[a-zA-Z][a-zA-Z ]+"
+ #formName = ngModel
+ >
+</div>
+
+<div *ngIf="formName?.touched && formName.errors?.required" class="alert alert-danger">
+  
+  <div *ngIf="formName.errors?.required">
+    Please Enter Name
+  </div>
+
+</div>
+
+<div class="form-group">
+<label for="name"> Contact [Mobile]</label>
+<input type="text" 
+  class="form-control"
+  required
+  name="contact"
+  ngModel
+  pattern="[0-9]*"
+  #formContact = ngModel
+>
+</div>
+
+<div *ngIf="formContact?.touched" class="alert alert-danger">
+  
+  <div *ngIf="formContact.errors?.required">
+    Please Enter Contact
+  </div>
+
+  <div *ngIf="formContact.errors?.pattern">
+    Please Enter Valid Contact
+  </div>
+
+</div>
+
+<div class="form-group">
+<label for="name"> Email </label>
+<input type="text" 
+ class="form-control"
+ required
+ name="email"
+ ngModel
+ pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
+ #formEmail=ngModel
+>
+</div>
+
+<div *ngIf="formEmail?.touched" class="alert alert-danger">
+  
+  <div *ngIf="formEmail.errors?.required">
+    Please Enter Email
+  </div>
+
+</div>
+
+<button type="submit" class="btn btn-success" [disabled]="frm.invalid"> Register </button>
+
+</form>
+
+{{ frm.value | json}}

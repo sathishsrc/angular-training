@@ -1,0 +1,19 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div>
+    <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+            <a class='navbar-brand'>{{pageTitle}}</a>
+            <ul class='nav navbar-nav'>
+                <li><a [routerLink]="['/welcome']">Home</a></li>
+                <li><a [routerLink]="['/products']">Product List</a></li>
+                <li><a [routerLink]="['/template']">Template Register</a></li>
+                <li><a [routerLink]="['/reactive']">Reactive Register</a></li>
+            </ul>
+            <div style="text-align: right">Welcome {{userName}}</div>
+        </div>
+    </nav>
+    <div class='container'>
+        <router-outlet></router-outlet>
+    </div>
+ </div>
+
